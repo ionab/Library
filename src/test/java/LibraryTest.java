@@ -8,9 +8,11 @@ public class LibraryTest {
     Library library;
     Book book;
 
+
+
     @Before
     public void before() {
-        library = new Library();
+        library = new Library(100);
         book = new Book();
     }
 
@@ -19,8 +21,19 @@ public class LibraryTest {
         assertEquals(0, library.getBookCount());
     }
     @Test
-    public void canAddBook(){
+    public void canAddBook_capacity(){
         library.addBook(book);
         assertEquals(1, library.getBookCount());
     }
+
+    @Test
+    public void cantAddBookLibraryFull(){
+        for (int i = 0; i<101; i++){
+            library.addBook(book);
+        }
+        assertEquals(100, library.getBookCount());
+
+    }
 }
+
+
